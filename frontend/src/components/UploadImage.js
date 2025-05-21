@@ -28,7 +28,7 @@ function UploadImage() {
 
     try {
       setUploading(true);
-      const res = await axios.post('http://localhost:5000/api/upload', formData, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -79,7 +79,7 @@ function UploadImage() {
       {uploadedUrl && (
         <div className="alert alert-success mt-3">
           Imaginea a fost încărcată cu succes!<br />
-          <a href={`http://localhost:5000${uploadedUrl}`} target="_blank" rel="noreferrer">
+          <a href={`${process.env.REACT_APP_API_URL}${uploadedUrl}`} target="_blank" rel="noreferrer">
             Vezi imaginea aici
           </a>
         </div>

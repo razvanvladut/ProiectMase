@@ -6,7 +6,7 @@ function Attractions() {
   const [expandedId, setExpandedId] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/attractions')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/attractions`)
       .then(res => {
         console.log('Atracții primite:', res.data);
         setAttractions(res.data)
@@ -26,7 +26,7 @@ function Attractions() {
           <div className="col-md-4 mb-3" key={a._id}>
             <div className="card h-100 shadow">
               <img
-                src={`http://localhost:5000${a.imageUrl}`}
+                src={a.imageUrl}
                 className="card-img-top"
                 alt={a.name}
                 style={{ maxHeight: '200px', objectFit: 'cover' }}

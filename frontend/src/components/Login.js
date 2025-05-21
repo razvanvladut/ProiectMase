@@ -10,7 +10,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', { username, password });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login`, { username, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('isAdmin', res.data.isAdmin);
       localStorage.setItem('username', res.data.username);
@@ -28,7 +28,7 @@ function Login() {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/users/register', { username, password });
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, { username, password });
       alert("Înregistrare reușită! Te poți autentifica.");
       setIsRegister(false);
     } catch (err) {

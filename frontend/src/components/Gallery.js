@@ -10,7 +10,7 @@ function Gallery() {
 
   const loadGallery = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/gallery');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/gallery`);
       setGallery(res.data);
     } catch (err) {
       alert("Eroare la încărcarea pozelor");
@@ -37,7 +37,7 @@ function Gallery() {
       formData.append('description', description);
 
       await axios.post(
-        'http://localhost:5000/api/gallery/upload',
+        `${process.env.REACT_APP_API_URL}/api/gallery/upload`,
         formData,
         {
           headers: {
@@ -90,7 +90,7 @@ function Gallery() {
             <div className="col-md-4 mb-3" key={photo._id}>
               <div className="card">
                 <img
-                  src={`http://localhost:5000${photo.imageUrl}`}
+                  src={`${process.env.REACT_APP_API_URL}${photo.imageUrl}`}
                   className="card-img-top"
                   alt="Calatorie"
                   style={{ objectFit: 'cover', height: '200px' }}

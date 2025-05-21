@@ -24,7 +24,7 @@ function AdminPanel() {
 
   const fetchAttractions = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/attractions');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/attractions`);
       setAttractions(res.data);
     } catch (err) {
       alert("Eroare la încărcare atracții");
@@ -58,7 +58,7 @@ function AdminPanel() {
         },
       };
 
-      await axios.post('http://localhost:5000/api/attractions', formData, config);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/attractions`, formData, config);
 
       setName('');
       setDescription('');
@@ -75,7 +75,7 @@ function AdminPanel() {
   const handleDelete = async (id) => {
     if (!window.confirm("Ești sigur că vrei să ștergi această atracție?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/attractions/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/attractions/${id}`, {
         headers: { Authorization: token }
       });
       fetchAttractions();
@@ -139,7 +139,7 @@ function AdminPanel() {
         {attractions.map((a) => (
           <div className="col-md-4 mb-3" key={a._id}>
             <div className="card">
-              <img src={ a.imageUrl.startsWith('/uploads/') ? `http://localhost:5000${a.imageUrl}` : `${a.imageUrl}`} className="card-img-top" alt={a.name} />
+              <img src={ a.imageUrl.startsWith('/uploads/') ? `${process.env.REACT_APP_API_URL}${a.imageUrl}` : `${a.imageUrl}`} className="card-img-top" alt={a.name} />
               <div className="card-body">
                 <h5 className="card-title">{a.name}</h5>
                 <p className="card-text">{a.description}</p>

@@ -21,7 +21,7 @@ function Map() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/attractions')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/attractions`)
       .then(res => setAttractions(res.data))
       .catch(() => alert("Eroare la atracții pentru hartă"));
   }, []);
